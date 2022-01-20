@@ -7,7 +7,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.converter-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.converter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.converter-container * {
+  margin-left: 20px;
+}
+
+.base-currency {
+  margin-top: 20px;
+}
+
+.form-control {
+  width: auto;
+}
+
+.curr-input {
+  -moz-appearance: textfield;
+}
+.curr-input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.result {
+  color: darkseagreen;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  background-color: lightslategray;
 }
