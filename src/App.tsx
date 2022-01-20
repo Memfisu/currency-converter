@@ -1,15 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
 import Converter from './components/Converter';
 
 const App = () => {
+  // todo может поправить структуру, а то тут один компонент болтается
   return (
-      <Provider store={store}>
-        <div>
+      <div className="app-container">
           <Converter />
-        </div>
-      </Provider>
+      </div>
   );
 }
 

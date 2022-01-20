@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPairs } from '../reducers/dataSetter';
 import { directions } from '../constants';
@@ -12,7 +13,7 @@ const Converter = () => {
     const [loaded, setLoaded] = useState<boolean>(false);
     const dispatch = useDispatch();
 
-    // todo
+    // todo что-то с этим сделать адекватное
     useEffect(() => {
         setLoaded(false);
         axios.get('https://free.currconv.com/api/v7/currencies?apiKey=66959f82da7e8efc17eb')
@@ -38,7 +39,10 @@ const Converter = () => {
                 <span className="lead">{"="}</span>
                 <Result />
             </div>
-            <BaseCurrency />
+            <div className="footer-container">
+                <BaseCurrency />
+                <Link className="nav-style lead" to="/courses">курсы валют</Link>
+            </div>
         </div>
     ) : <div>Oh no</div>; // todo
 }

@@ -27,7 +27,7 @@ const Result = () => {
         }
     }, [from, to]);
 
-    return loaded && amount && result ? <span className="lead result">{amount * result}</span> : null;
+    return loaded && amount && result ? <span className="lead result">{(amount * result).toFixed(2)}</span> : null;
 }
 
 export default Result;
