@@ -6,11 +6,17 @@ export interface IData {
 
 export interface IAction {
     type: string;
-    payload: IData | string | number;
+    payload: IData[] | string | number;
 }
 
 export interface IState {
     dataSetter?: {
-        pairs: IData[]
+        pairs: IData[],
+        status: string,
+        from: string,
+        to: string,
+        amount: number,
+        baseCurr: string,
+        result: number
     };
 }

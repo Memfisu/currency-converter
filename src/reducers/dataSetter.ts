@@ -1,7 +1,11 @@
 import { IData, IAction, IState } from '../interfaces/interfaces';
-import { actions } from '../constants';
+import { actions, statuses } from '../constants';
 
-const setPairs = (data: IData): IAction => ({
+const initData = () => ({
+    type: actions.INIT,
+});
+
+const setPairs = (data: IData[]): IAction => ({
     type: actions.PAIRS,
     payload: data
 });
@@ -21,6 +25,11 @@ const setAmount = (amount: string): IAction => ({
     payload: amount
 });
 
+const setResult = (result: number): IAction => ({
+    type: actions.RESULT,
+    payload: result
+});
+
 const setBaseCurrency = (curr: string): IAction => ({
     type: actions.BASE,
     payload: curr
@@ -28,8 +37,17 @@ const setBaseCurrency = (curr: string): IAction => ({
 
 const dataSetter = (state: IState = {}, action: IAction) => {
     switch (action.type) {
+        case actions.INIT:
+            return {
+                ...state,
+                status: statuses.EMPTY
+            };
         case actions.PAIRS:
-            return { ...state, pairs: action.payload };
+            return {
+                ...state,
+                pairs: action.payload,
+                status: statuses.DONE
+            };
         case actions.FROM:
             return { ...state, from: action.payload };
         case actions.TO:
@@ -38,10 +56,20 @@ const dataSetter = (state: IState = {}, action: IAction) => {
             return { ...state, amount: action.payload };
         case actions.BASE:
             return { ...state, baseCurr: action.payload };
+        case actions.RESULT:
+            return { ...state, RESULT: action.payload };
         default:
             return state;
     }
 };
 
-export { setPairs, setFrom, setTo, setAmount, setBaseCurrency };
+export {
+    initData,
+    setPairs,
+    setFrom,
+    setTo,
+    setAmount,
+    setBaseCurrency,
+    setResult
+};
 export default dataSetter;

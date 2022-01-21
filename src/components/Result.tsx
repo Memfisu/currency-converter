@@ -11,6 +11,7 @@ const Result = () => {
     const [loaded, setLoaded] = useState<boolean>(false);
     const [result, setResult] = useState<number>(0);
 
+    // todo перенести в саги
     useEffect(() => {
         setLoaded(false);
         if (from && to) {

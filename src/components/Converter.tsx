@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { statusSelector } from '../selectors/selectors';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setPairs } from '../reducers/dataSetter';
-import { directions } from '../constants';
+import { directions, statuses } from '../constants';
 import CurrencySelector from './CurrencySelector';
 import Result from './Result';
 import Input from './Input';
 import BaseCurrency from './BaseCurrency';
+import Loader from './Loader';
 
 const Converter = () => {
-    const [loaded, setLoaded] = useState<boolean>(false);
-    const dispatch = useDispatch();
+    const status = useSelector(statusSelector);
 
-    // todo что-то с этим сделать адекватное
-    useEffect(() => {
-        setLoaded(false);
-        axios.get('https://free.currconv.com/api/v7/currencies?apiKey=66959f82da7e8efc17eb')
-            .then(res => {
-                // @ts-ignore todo
-                dispatch(setPairs(Object.values(res.data.results)));
-            })
-            .catch(err => {
-                console.log(err);
-            })
-            .finally(() => {
-                setLoaded(true);
-            })
-    }, [dispatch]);
+    if (status !== statuses.DONE) return <Loader />;
 
-    return loaded ? (
+    return (
         <div className="converter-container">
             <div className="converter">
                 <Input />
@@ -44,7 +29,7 @@ const Converter = () => {
                 <Link className="nav-style lead" to="/courses">курсы валют</Link>
             </div>
         </div>
-    ) : <div>Oh no</div>; // todo
+    );
 }
 
 export default Converter;

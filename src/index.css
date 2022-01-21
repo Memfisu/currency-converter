@@ -41,7 +41,7 @@ body {
 }
 
 .base-currency {
-  margin-top: 20px;
+  margin: 20px 0 20px 0;
 }
 
 .form-control {
@@ -62,4 +62,72 @@ body {
 
 .btn-secondary {
   background-color: lightslategray;
+}
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+}
+
+.loader-wrapper.mini {
+  position: inherit;
+}
+
+.loader {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: conic-gradient(darkseagreen, transparent);
+
+  animation: rotating 1s linear infinite;
+}
+
+.loader::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  background: white;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(360deg);
+
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.currencies-table {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto auto;
+  grid-auto-rows: 50px;
+  height: 235px;
+  justify-items: center;
+}
+
+.currencies-column {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto;
+  grid-auto-rows: 40px;
+}
+
+.courses-container .base-currency .btn-group {
+  margin-left: 20px;
 }

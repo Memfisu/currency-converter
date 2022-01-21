@@ -5,7 +5,6 @@ import { IData } from '../interfaces/interfaces';
 import { setFrom, setTo } from '../reducers/dataSetter';
 import { directions } from '../constants';
 
-// todo можно ограничить тип до двух значений из констант
 const CurrencySelector = ({ direction }: { direction: string}) => {
     const list = useSelector(currSelector);
     const baseCurr = useSelector(baseCurrSelector);
@@ -24,7 +23,6 @@ const CurrencySelector = ({ direction }: { direction: string}) => {
     return (
         <select className="form-control" onChange={handleChange}>
             <option>{' '}</option>
-            {/*@ts-ignore todo */}
             {list?.map((item: IData) =>
                 <option
                     key={item.id}

@@ -18,7 +18,7 @@ const BaseCurrency = () => {
 
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 {
-                    baseCurr.map((item: string) => (
+                    baseCurr.map((item: string, index: number) => (
                         <label className="btn btn-secondary" key={item} onClick={() => setValue(item)}>
                             <input type="radio" name="baseCurr" />
                             {item}
