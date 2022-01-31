@@ -11,3 +11,5 @@ export const toSelector = (state: IState): string => state.dataSetter!.to;
 export const amountSelector = (state: IState): number => state.dataSetter!.amount;
 
 export const baseCurrSelector = (state: IState): string => state.dataSetter!.baseCurr;
+
+export const resultSelector = (state: IState): number => state.dataSetter!.result;

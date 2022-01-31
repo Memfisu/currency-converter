@@ -57,7 +57,7 @@ const dataSetter = (state: IState = {}, action: IAction) => {
         case actions.BASE:
             return { ...state, baseCurr: action.payload };
         case actions.RESULT:
-            return { ...state, RESULT: action.payload };
+            return { ...state, result: action.payload };
         default:
             return state;
     }

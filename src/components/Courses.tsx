@@ -13,6 +13,7 @@ const Courses = () => {
     const [result, setResult] = useState<PromiseSettledResult<AxiosResponse>[]>();
     const baseCurr = useSelector(baseCurrSelector);
 
+    // todo тоже в саги перенести?
     useEffect(() => {
         setLoaded(false);
         if (baseCurr) {
@@ -32,28 +33,31 @@ const Courses = () => {
         }
     }, [baseCurr]);
 
+    const Table = loaded ?
+            <div className="currencies-table">
+                <div className="currencies-column">
+                    <div className="lead result">валюта</div>
+                    {currForCourses?.map((item: string, index: number) => <div key={index} className="lead">{item}</div>)}
+                    {/*<div className="lead">валюта</div>*/}
+                    {/*<div className="lead">валюта</div>*/}
+                    {/* оставила заглушки, т.к лимит запросов быстро кончается из-за того, что приходится запрашивать каждый курс отдельно (так работает бесплатное API)   */}
+                </div>
+                <div className="currencies-column">
+                    <div className="lead result">курс</div>
+                    {result?.map((item, index) =>
+                        <div key={index} className="lead">{`${Object.values(item.status !== "rejected" ? item?.value?.data : [])[0]} за 1 ${currForCourses[index]}`}</div>
+                    )}
+                    {/*<div className="lead">курс</div>*/}
+                    {/*<div className="lead">курс</div>*/}
+                </div>
+            </div>
+            :  <Loader mini />;
+
     return (
         <div className="courses-container">
             <BaseCurrency />
 
-            {loaded ?
-                (<div className="currencies-table">
-                    <div className="currencies-column">
-                        <div className="lead result">валюта</div>
-                        {/*{currForCourses?.map((item: string, index: number) => <div key={index} className="lead">{item}</div>)}*/}
-                        <div className="lead">валюта</div>
-                        <div className="lead">валюта</div>
-                    </div>
-                    <div className="currencies-column">
-                        <div className="lead result">курс</div>
-                        {/*{result?.map((item, index) =>*/}
-                        {/*    <div key={index} className="lead">{`${Object.values(item?.value?.data)[0]} за 1 ${currForCourses[index]}`}</div>*/}
-                        {/*)}*/}
-                        <div className="lead">курс</div>
-                        <div className="lead">курс</div>
-                    </div>
-                </div>)
-                :  <Loader mini />}
+            {baseCurr ? Table : <div className="notification lead">Выберите валюту</div>}
 
             <Link className="nav-style lead" to="/">назад</Link>
         </div>

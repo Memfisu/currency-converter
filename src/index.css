@@ -117,7 +117,7 @@ body {
   grid-gap: 5px;
   grid-template-columns: auto auto;
   grid-auto-rows: 50px;
-  height: 235px;
+  height: 280px;
   justify-items: center;
 }
 
@@ -130,4 +130,10 @@ body {
 
 .courses-container .base-currency .btn-group {
   margin-left: 20px;
+}
+
+.notification {
+  margin-bottom: 30px;
+  text-align: center;
+  color: darksalmon;
 }

@@ -16,13 +16,12 @@ function* sagaResultHandler() {
     const from: string = yield select(fromSelector);
     const to: string = yield select(toSelector);
     const amount: number = yield select(amountSelector);
-    if (from && to) {
-        const { data } = yield axios.get(`https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=66959f82da7e8efc17eb`)
-        put(setResult(data[`${from}_${to}`] * amount));
+    if (from && to && amount) {
+        const { data } = yield axios.get(`https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=66959f82da7e8efc17eb`);
+        yield put(setResult(data[`${from}_${to}`] * amount));
     }
 }
 
-// доработать
 function* sagaCurrChangeHandler() {
     yield takeEvery(actions.FROM, sagaResultHandler);
     yield takeEvery(actions.TO, sagaResultHandler);
